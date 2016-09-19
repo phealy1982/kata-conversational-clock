@@ -2,6 +2,7 @@ package serenitylabs.tutorials;
 
 import com.googlecode.zohhak.api.TestWith;
 import com.googlecode.zohhak.api.runners.ZohhakRunner;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.StrictAssertions.assertThat;
@@ -21,4 +22,12 @@ public class HourTest {
         assertThat(hour.word).isEqualTo(word);
     }
 
+    @TestWith({
+            "1, One",
+            "6, Six",
+            "13, Thirteen",
+    })
+    public void should_know_hour_details_for_a_given_number(Integer number, Hour hour) throws Exception {
+        assertThat(Hour.withNumber(number)).isEqualTo(hour);
+    }
 }
