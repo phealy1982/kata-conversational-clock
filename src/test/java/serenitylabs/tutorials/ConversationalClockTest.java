@@ -24,6 +24,21 @@ public class ConversationalClockTest {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
     }
 
+    @TestWith({
+        "00:00, it's midnight",
+        "01:15, it's quarter past one",
+        "07:27, it's twenty seven past seven",
+        "09:59, it's one to ten",
+        "12:00, it's noon",
+        "14:45, it's quarter to three",
+        "19:30, it's half past seven",
+        "20:50, it's ten to nine"
+    })
+    public void should_tell_the_time_when_past_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+
     /**
      * Creates an instance of a ConversationalClock, set to a requiredTime
      *
