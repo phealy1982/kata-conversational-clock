@@ -23,8 +23,8 @@ public class MinuteTest {
         "Fifteen, 15, quarter",
         "Thirty, 30, half",
     })  public void should_know_number_and_word_for_minute(Minute minute, Integer number, String word)throws Exception{
-        assertThat(minute.word).isEqualTo(word);
-        assertThat(minute.number).isEqualTo(number);
+        assertThat(minute.word()).isEqualTo(word);
+        assertThat(minute.number()).isEqualTo(number);
     }
 
     @TestWith({

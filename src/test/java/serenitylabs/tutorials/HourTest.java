@@ -18,8 +18,8 @@ public class HourTest {
             "Four, 4, four",
             "Fifteen, 15, three",
     }) public void should_know_number_and_word_for_hour(Hour hour, Integer number, String word){
-        assertThat(hour.number).isEqualTo(number);
-        assertThat(hour.word).isEqualTo(word);
+        assertThat(hour.number()).isEqualTo(number);
+        assertThat(hour.word()).isEqualTo(word);
     }
 
     @TestWith({

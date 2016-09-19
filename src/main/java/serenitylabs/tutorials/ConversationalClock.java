@@ -16,18 +16,18 @@ public class ConversationalClock {
 
     private String timePastTheHour() {
         return pastTheHalfHour() ?
-            "it's " + Minute.withNumber(Minute.Sixty.number - now.minute()).word + " to " + Hour.withNumber(now.hour() + 1).word :
-            "it's " + Minute.withNumber(now.minute()).word + " past " + Hour.withNumber(now.hour()).word;
+            "it's " + Minute.withNumber(Minute.Sixty.number() - now.minute()).word() + " to " + Hour.withNumber(now.hour() + 1).word() :
+            "it's " + Minute.withNumber(now.minute()).word() + " past " + Hour.withNumber(now.hour()).word();
     }
 
     private Boolean pastTheHalfHour() {
-        return now.minute() > Minute.Thirty.number;
+        return now.minute() > Minute.Thirty.number();
     }
 
     private String timeOnTheHour() {
         return isMidnight() || isNoon() ?
-            "it's " + Hour.withNumber(now.hour()).word :
-            "it's " + Hour.withNumber(now.hour()).word  + " o'clock";
+            "it's " + Hour.withNumber(now.hour()).word() :
+            "it's " + Hour.withNumber(now.hour()).word()  + " o'clock";
     }
 
     private Boolean onTheHour() {
@@ -35,10 +35,10 @@ public class ConversationalClock {
     }
 
     public Boolean isMidnight() {
-        return now.hour() == Hour.Zero.number;
+        return now.hour() == Hour.Zero.number();
     }
 
     public Boolean isNoon() {
-        return now.hour() == Hour.Twelve.number;
+        return now.hour() == Hour.Twelve.number();
     }
 }

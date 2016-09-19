@@ -69,8 +69,8 @@ public enum Minute {
     FiftyNine(59, "fifty nine"),
     Sixty(60, "fifty nine");
 
-    public final Integer number;
-    public final String word;
+    private final Integer number;
+    private final String word;
 
     Minute(Integer number, String word) {
         this.number = number;
@@ -86,6 +86,14 @@ public enum Minute {
 
     public static Minute withNumber(Integer number) {
         return NUMBER_TO_MINUTE_TRANSLATION.get(number);
+    }
+
+    public Integer number(){
+        return this.number;
+    }
+
+    public String word(){
+        return this.word;
     }
 }
 

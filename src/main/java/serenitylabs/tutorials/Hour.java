@@ -14,8 +14,8 @@ public enum Hour {
     Eighteen(18, "six"), Nineteen(19, "seven"), Twenty(20, "eight"), TwentyOne(21, "nine"),
     TwentyTwo(22, "ten"), TwentyThree(23, "eleven");
 
-    public final Integer number;
-    public final String word;
+    private final Integer number;
+    private final String word;
 
     Hour(Integer number, String word) {
         this.number=number;
@@ -31,5 +31,13 @@ public enum Hour {
 
     public static Hour withNumber(Integer number) {
         return NUMBER_TO_HOUR_TRANSLATION.get(number);
+    }
+
+    public Integer number(){
+        return this.number;
+    }
+
+    public String word(){
+        return this.word;
     }
 }
