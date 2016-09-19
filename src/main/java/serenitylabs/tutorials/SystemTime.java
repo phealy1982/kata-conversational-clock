@@ -6,6 +6,16 @@ import static java.lang.String.format;
 
 class SystemTime {
 
+    private LocalTime now;
+
+    public SystemTime() {
+        this.now = LocalTime.now();
+    }
+
+    SystemTime(LocalTime now) {
+        this.now = now;
+    }
+
     /**
      * @return the hour of the day a 24-hour format
      */
@@ -25,7 +35,7 @@ class SystemTime {
         return format("%01d:%01d", hour(), minute());
     }
 
-    private LocalTime now() {
-        return LocalTime.now();
+    public LocalTime now() {
+        return this.now;
     }
 }

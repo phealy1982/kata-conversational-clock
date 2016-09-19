@@ -9,6 +9,6 @@ public class ConversationalClock {
     }
 
     public String currentTime() {
-        return "it's one o'clock";
+        return "it's " + Hour.withNumber(now.hour()).word  + " o'clock";
     }
 }

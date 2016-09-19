@@ -5,6 +5,8 @@ import com.googlecode.zohhak.api.TestWith;
 import com.googlecode.zohhak.api.runners.ZohhakRunner;
 import org.junit.runner.RunWith;
 
+import java.time.LocalTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(ZohhakRunner.class)
@@ -12,6 +14,11 @@ public class ConversationalClockTest {
 
     @TestWith({
             "01:00, it's one o'clock",
+            "07:00, it's seven o'clock",
+            "09:00, it's nine o'clock",
+            "13:00, it's one o'clock",
+            "17:00, it's five o'clock",
+            "21:00, it's nine o'clock",
     })
     public void should_tell_the_time_on_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
@@ -30,7 +37,7 @@ public class ConversationalClockTest {
         HourAndMinute time = new HourAndMinute(requiredTime);
 
         // TODO: how can you control the time?
-        SystemTime systemTime = new SystemTime();
+        SystemTime systemTime = new SystemTime(LocalTime.of(time.hour(), time.minute()));
 
         return new ConversationalClock(systemTime);
     }
