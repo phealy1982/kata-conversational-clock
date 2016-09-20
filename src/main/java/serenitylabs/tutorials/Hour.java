@@ -10,17 +10,17 @@ public enum Hour {
     Five(5, 17), Six(6, 18), Seven(7, 19), Eight(8, 20), Nine(9, 21),
     Ten(10, 22), Eleven(11, 23), Noon(12);
 
-    private final List<Integer> numericRepresntations;
+    private final List<Integer> numericRepresentations;
 
     private static final Map<Integer, Hour> NUMBER_TO_HOUR_TRANSLATION = new LinkedHashMap<>();
 
     Hour(Integer... numbers) {
-        numericRepresntations = Arrays.asList(numbers);
+        numericRepresentations = Arrays.asList(numbers);
     }
 
     static {
         for (Hour hour : Hour.values()) {
-            for(Integer numberRepresentation : hour.numericRepresntations){
+            for(Integer numberRepresentation : hour.numericRepresentations){
                 NUMBER_TO_HOUR_TRANSLATION.put(numberRepresentation, hour);
             }
         }
