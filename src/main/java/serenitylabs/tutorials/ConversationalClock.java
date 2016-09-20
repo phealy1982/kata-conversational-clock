@@ -35,10 +35,10 @@ public class ConversationalClock {
     }
 
     public Boolean isMidnight() {
-        return now.hour() == Hour.Zero.number();
+        return Hour.withNumber(now.hour()) == Hour.Midnight;
     }
 
     public Boolean isNoon() {
-        return now.hour() == Hour.Twelve.number();
+        return Hour.withNumber(now.hour()) == Hour.Noon;
     }
 }

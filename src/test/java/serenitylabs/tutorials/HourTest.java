@@ -14,20 +14,31 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
 public class HourTest {
 
     @TestWith({
-            "One, 1, one",
-            "Four, 4, four",
-            "Fifteen, 15, three",
-    }) public void should_know_number_and_word_for_hour(Hour hour, Integer number, String word){
-        assertThat(hour.number()).isEqualTo(number);
-        assertThat(hour.word()).isEqualTo(word);
+            "One, one",
+            "Four, four",
+            "Nine, nine",
+    }) public void should_know_word_for_hour(Hour hour, String word){
+            assertThat(hour.word()).isEqualTo(word);
     }
 
     @TestWith({
             "1, One",
             "6, Six",
-            "13, Thirteen",
+            "18, Six",
     })
     public void should_know_hour_details_for_a_given_number(Integer number, Hour hour) throws Exception {
         assertThat(Hour.withNumber(number)).isEqualTo(hour);
+    }
+
+    @Test
+    public void should_not_lookup_null_number() throws Exception {
+        assertThat(Hour.withNumber(null)).isEqualTo(null);
+
+    }
+
+    @Test
+    public void should_only_know_about_actual_hours() throws Exception {
+        assertThat(Hour.withNumber(44)).isEqualTo(null);
+
     }
 }
