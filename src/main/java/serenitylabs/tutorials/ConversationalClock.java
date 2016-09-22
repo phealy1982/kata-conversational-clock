@@ -9,10 +9,6 @@ public class ConversationalClock {
     }
 
     public String currentTime() {
-         if (now.hour() == 1){
-             return "it's one o'clock";
-        } else if (now.hour() == 2){
-             return "it's two o'clock";
-         } else return null;
+         return "it's " + ConversationalHour.wordFor(now.hour()) + " o'clock";
     }
 }
