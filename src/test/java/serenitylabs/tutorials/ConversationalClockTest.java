@@ -3,15 +3,19 @@ package serenitylabs.tutorials;
 import com.googlecode.zohhak.api.Coercion;
 import com.googlecode.zohhak.api.TestWith;
 import com.googlecode.zohhak.api.runners.ZohhakRunner;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(ZohhakRunner.class)
 public class ConversationalClockTest {
 
     @TestWith({
             "01:00, it's one o'clock",
+            "02:00, it's two o'clock",
     })
     public void should_tell_the_time_on_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
@@ -30,7 +34,9 @@ public class ConversationalClockTest {
         HourAndMinute time = new HourAndMinute(requiredTime);
 
         // TODO: how can you control the time?
-        SystemTime systemTime = new SystemTime();
+        SystemTime systemTime = mock(SystemTime.class);
+        when(systemTime.hour()).thenReturn(time.hour());
+        when(systemTime.minute()).thenReturn(time.minute());
 
         return new ConversationalClock(systemTime);
     }
