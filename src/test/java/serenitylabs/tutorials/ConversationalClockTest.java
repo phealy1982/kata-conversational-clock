@@ -3,7 +3,6 @@ package serenitylabs.tutorials;
 import com.googlecode.zohhak.api.Coercion;
 import com.googlecode.zohhak.api.TestWith;
 import com.googlecode.zohhak.api.runners.ZohhakRunner;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
