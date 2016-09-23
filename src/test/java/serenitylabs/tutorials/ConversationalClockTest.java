@@ -29,6 +29,7 @@ public class ConversationalClockTest {
         "01:15, it's quarter past one",
         "07:27, it's just gone twenty five past seven",
         "09:59, it's almost ten",
+        "11:50, it's ten to noon",
         "12:00, it's noon",
         "12:01, it's just gone noon",
         "14:43, it's almost quarter to three",
@@ -36,7 +37,8 @@ public class ConversationalClockTest {
         "14:46, it's just gone quarter to three",
         "14:01, it's just gone two",
         "19:30, it's half past seven",
-        "20:50, it's ten to nine"
+        "20:50, it's ten to nine",
+        "23:50, it's ten to midnight"
     })
     public void should_tell_the_time_when_past_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);

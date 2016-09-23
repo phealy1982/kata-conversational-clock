@@ -41,4 +41,5 @@ public class ConversationalHourTest {
         assertThat(ConversationalHour.withNumber(44)).isEqualTo(null);
 
     }
+
 }

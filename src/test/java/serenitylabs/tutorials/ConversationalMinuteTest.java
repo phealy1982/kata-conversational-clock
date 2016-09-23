@@ -36,14 +36,37 @@ public class ConversationalMinuteTest {
     @Test
     public void should_be_aware_of_all_minutes() throws Exception {
 
+        assertThat(numericRepresentationsOf(ConversationalMinute.values())).containsAll(range(0, 60));
+
+        assertThat(mintuesInConversationalMintues()).containsAll(ALL_MINUTES);
+    }
+
+    private Iterable<Integer> range(int start, int end) {
+        List<Integer> list = new ArrayList<>();
+        for(int minute=start; minute < end; minute ++){
+            list.add(minute);
+        }
+        return list;
+    }
+
+    private List<Integer> numericRepresentationsOf(ConversationalMinute[] minutes) {
+        List<Integer> minutesInConversationalMinutes = new ArrayList<>();
+        for(ConversationalMinute conversationalMinute : minutes){
+            for(Integer minute: conversationalMinute.numericRepresentations()){
+                minutesInConversationalMinutes.add(minute);
+            }
+        }
+        return minutesInConversationalMinutes;
+    }
+
+    private List<Integer> mintuesInConversationalMintues() {
         List<Integer> minutesInConversationalMinutes = new ArrayList<>();
         for(ConversationalMinute conversationalMinute : ConversationalMinute.values()){
             for(Integer minute: conversationalMinute.numericRepresentations()){
                 minutesInConversationalMinutes.add(minute);
             }
         }
-
-        assertThat(minutesInConversationalMinutes).containsAll(ALL_MINUTES);
+        return minutesInConversationalMinutes;
     }
 
     private static List<Integer> allMinutes() {
