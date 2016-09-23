@@ -27,10 +27,14 @@ public class ConversationalClockTest {
     @TestWith({
         "00:00, it's midnight",
         "01:15, it's quarter past one",
-        "07:27, it's twenty seven past seven",
-        "09:59, it's one to ten",
+        "07:27, it's just gone twenty five past seven",
+        "09:59, it's almost ten",
         "12:00, it's noon",
+        "12:01, it's just gone noon",
+        "14:43, it's almost quarter to three",
         "14:45, it's quarter to three",
+        "14:46, it's just gone quarter to three",
+        "14:01, it's just gone two",
         "19:30, it's half past seven",
         "20:50, it's ten to nine"
     })

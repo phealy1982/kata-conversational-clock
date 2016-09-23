@@ -11,14 +11,14 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
  * Created by 66515 on 19/09/2016.
  */
 @RunWith(ZohhakRunner.class)
-public class HourTest {
+public class ConversationalHourTest {
 
     @TestWith({
             "One, one",
             "Four, four",
             "Nine, nine",
-    }) public void should_know_word_for_hour(Hour hour, String word){
-            assertThat(hour.word()).isEqualTo(word);
+    }) public void should_know_word_for_hour(ConversationalHour conversationalHour, String word){
+            assertThat(conversationalHour.word()).isEqualTo(word);
     }
 
     @TestWith({
@@ -26,19 +26,19 @@ public class HourTest {
             "6, Six",
             "18, Six",
     })
-    public void should_know_hour_details_for_a_given_number(Integer number, Hour hour) throws Exception {
-        assertThat(Hour.withNumber(number)).isEqualTo(hour);
+    public void should_know_hour_details_for_a_given_number(Integer number, ConversationalHour conversationalHour) throws Exception {
+        assertThat(ConversationalHour.withNumber(number)).isEqualTo(conversationalHour);
     }
 
     @Test
     public void should_not_lookup_null_number() throws Exception {
-        assertThat(Hour.withNumber(null)).isEqualTo(null);
+        assertThat(ConversationalHour.withNumber(null)).isEqualTo(null);
 
     }
 
     @Test
     public void should_only_know_about_actual_hours() throws Exception {
-        assertThat(Hour.withNumber(44)).isEqualTo(null);
+        assertThat(ConversationalHour.withNumber(44)).isEqualTo(null);
 
     }
 }

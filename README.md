@@ -39,17 +39,17 @@ The Conversational Clock should:
       of the class?
 - Now that you can control the time, it's worth noticing that
   some of the examples of the expected behaviour listed above seem to be easier to implement than others:
-    1. Consider starting with making the Clock tell the time on an hour ("it's one o'clock", "it's two o'clock")
+    1. Consider starting with making the Clock tell the time on an conversationalHour ("it's one o'clock", "it's two o'clock")
     2. Add support for telling the time with a minute precision ("it's seven past eight", "it's fifty three past five")
     3. Make the responses a bit more human: "it's a quarter past three" instead of "it's fifteen past three",
     "it's midnight" instead of "it's zero o'clock" and so on
-    4. Make the Clock tell the time relative to the hour that's "closer" -
+    4. Make the Clock tell the time relative to the conversationalHour that's "closer" -
     "it's seven to nine" instead of "it's eight fifty three"
     5. To make things more interesting you can consider adding "fuzzy responses",
     such as: "it's just after two" instead of "14:01", "it's almost three" instead of "14:58"
 - Remember to look for opportunities to refactor both the tests and the Conversational Clock as soon as the tests
 turn green
-- Think about "how much testing is enough"? Do you need to test every single possible hour/minute combination?
+- Think about "how much testing is enough"? Do you need to test every single possible conversationalHour/minute combination?
 What's the cost if you do? What are the consequences if you don't?
 
 ## Resources
