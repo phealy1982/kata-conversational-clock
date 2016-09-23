@@ -5,12 +5,10 @@ import com.googlecode.zohhak.api.runners.ZohhakRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 
 /**
@@ -19,31 +17,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(ZohhakRunner.class)
 public class ConversationalMinuteTest {
 
-    public static final List<Integer> ALL_MINUTES = allMinutes();
-
     @TestWith({
-        "1, just gone",
-        "11, just gone ten past",
-        "14, almost quarter past",
-        "15, quarter past",
-        "31, just gone half past",
-        "53, almost five to",
-        "54, almost five to",
-    })  public void should_know_closest_conversational_sentence_for_a_minute(Integer number, String word)throws Exception{
-        assertThat(ConversationalMinute.withNumber(number).words()).isEqualTo(word);
+            "1, just gone",
+            "11, just gone ten past",
+            "14, almost quarter past",
+            "15, quarter past",
+            "31, just gone half past",
+            "53, almost five to",
+            "54, almost five to",
+    })
+    public void should_know_closest_conversational_sentence_for_a_minute(Integer number, String words) throws Exception {
+        assertThat(ConversationalMinute.withNumber(number).words()).isEqualTo(words);
     }
 
     @Test
     public void should_be_aware_of_all_minutes() throws Exception {
-
         assertThat(numericRepresentationsOf(ConversationalMinute.values())).containsAll(range(0, 60));
-
-        assertThat(mintuesInConversationalMintues()).containsAll(ALL_MINUTES);
     }
 
     private Iterable<Integer> range(int start, int end) {
         List<Integer> list = new ArrayList<>();
-        for(int minute=start; minute < end; minute ++){
+        for (int minute = start; minute < end; minute++) {
             list.add(minute);
         }
         return list;
@@ -51,29 +45,11 @@ public class ConversationalMinuteTest {
 
     private List<Integer> numericRepresentationsOf(ConversationalMinute[] minutes) {
         List<Integer> minutesInConversationalMinutes = new ArrayList<>();
-        for(ConversationalMinute conversationalMinute : minutes){
-            for(Integer minute: conversationalMinute.numericRepresentations()){
+        for (ConversationalMinute conversationalMinute : minutes) {
+            for (Integer minute : conversationalMinute.numericRepresentations()) {
                 minutesInConversationalMinutes.add(minute);
             }
         }
         return minutesInConversationalMinutes;
-    }
-
-    private List<Integer> mintuesInConversationalMintues() {
-        List<Integer> minutesInConversationalMinutes = new ArrayList<>();
-        for(ConversationalMinute conversationalMinute : ConversationalMinute.values()){
-            for(Integer minute: conversationalMinute.numericRepresentations()){
-                minutesInConversationalMinutes.add(minute);
-            }
-        }
-        return minutesInConversationalMinutes;
-    }
-
-    private static List<Integer> allMinutes() {
-        List<Integer> allMinutes = new ArrayList<>();
-        for(Integer minute=0; minute <60; minute ++){
-            allMinutes.add(minute);
-        }
-        return  allMinutes;
     }
 }

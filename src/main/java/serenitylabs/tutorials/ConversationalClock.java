@@ -17,6 +17,7 @@ public class ConversationalClock {
     }
 
     private String constructTimeSentence() {
+
         if(onTheHour()){
             return constructOnTheHourSentence(ConversationalHour.withNumber(now.hour()), ConversationalMinute.withNumber(now.minute()));
         }
