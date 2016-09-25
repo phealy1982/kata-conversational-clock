@@ -13,8 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(ZohhakRunner.class)
 public class ConversationalHourTest {
 
-
-
     @TestWith(
         {
             "1, one",
@@ -23,6 +21,5 @@ public class ConversationalHourTest {
         }) public void should_know_word_for_hour(int hour, String word) throws Exception {
         ConversationalHour conversationalHour = new ConversationalHour();
         assertThat(conversationalHour.wordFor(hour)).isEqualTo(word);
-
     }
 }

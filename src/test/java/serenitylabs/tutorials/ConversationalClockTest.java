@@ -21,9 +21,9 @@ public class ConversationalClockTest {
     }
 
     @TestWith({
-        "01:27, it's twenty seven past one",
-        "02:46, it's fourteen to three",
-        "14:46, it's fourteen to three",
+        "01:27, it's just gone twenty five past one",
+        "02:46, it's just gone quarter to three",
+        "14:46, it's just gone quarter to three",
     })
     public void should_tell_the_time_with_accuracy_to_the_minute(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
@@ -32,8 +32,9 @@ public class ConversationalClockTest {
     @TestWith({
         "12:00, it's noon",
         "00:00, it's midnight",
-        "00:27, it's twenty seven past midnight",
+        "00:27, it's just gone twenty five past midnight",
         "12:15, it's quarter past noon",
+        "23:49, it's almost ten to midnight"
     })
     public void should_know_about_midnight_and_noon(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
