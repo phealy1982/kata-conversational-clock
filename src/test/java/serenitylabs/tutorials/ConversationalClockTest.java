@@ -20,6 +20,42 @@ public class ConversationalClockTest {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
     }
 
+    @TestWith({
+        "01:27, it's twenty seven past one",
+        "02:46, it's fourteen to three",
+        "14:46, it's fourteen to three",
+    })
+    public void should_tell_the_time_with_accuracy_to_the_minute(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+    @TestWith({
+        "12:00, it's noon",
+        "00:00, it's midnight",
+        "00:27, it's twenty seven past midnight",
+        "12:15, it's quarter past noon",
+    })
+    public void should_know_about_midnight_and_noon(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+    @TestWith({
+        "00:30, it's half past midnight",
+        "13:15, it's quarter past one",
+    })
+    public void should_know_about_quarter_past_and_half_past(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+    @TestWith({
+        "14:35, it's twenty five to three",
+        "15:25, it's twenty five past three",
+        "23:50, it's ten to midnight",
+    })
+    public void should_know_difference_between_past_the_hour_and_to_the_hour(ConversationalClock clock, String expectedTime){
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
     /**
      * Creates an instance of a ConversationalClock, set to a requiredTime
      *
