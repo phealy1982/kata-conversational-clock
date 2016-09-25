@@ -16,28 +16,27 @@ public class ConversationalClock {
     }
 
     public String currentTime() {
-            return createSentence(now.hour(), now.minute());
+        return createSentence(now.hour(), now.minute());
     }
 
     private String createSentence(int hour, int minute) {
         String sentence = START_OF_SENTENCE;
+        String hourPart;
+        String minutePart = "";
 
-        if(noonOrMidnight(hour, minute)){
-            return sentence + ConversationalHour.wordFor(hour);
+        if (onTheHour(minute)) {
+            hourPart = noonOrMidnight(hour, minute) ?
+                ConversationalHour.wordFor(hour):
+                ConversationalHour.wordFor(hour) + O_CLOCK;
+        } else {
+            hourPart = approachingTheHour(minute) ?
+                nextHour(hour):
+                ConversationalHour.wordFor(hour);
+            minutePart = approachingTheHour(minute) ?
+                ConversationalMinute.wordFor(minutesToTheHour(minute)) + TO_THE_HOUR:
+                ConversationalMinute.wordFor(minute) + PAST_THE_HOUR;
         }
-
-        if(onTheHour(minute)){
-            return sentence + ConversationalHour.wordFor(hour) + O_CLOCK;
-        }
-
-        if(approachingTheHour(minute)){
-            return sentence + ConversationalMinute.wordFor(minutesToTheHour(minute)) + TO_THE_HOUR
-                + nextHour(hour);
-        }
-
-        return  sentence + ConversationalMinute.wordFor(minute) + PAST_THE_HOUR +
-            ConversationalHour.wordFor(hour);
-
+        return sentence + minutePart + hourPart;
     }
 
     private boolean noonOrMidnight(int hour, int minute) {
