@@ -10,8 +10,8 @@ public class ConversationalMinute {
 
     private static final Map<Integer, String> TRANSLATION;
     private static final String NO_PREFIX = "";
-    public static final String TO = " to ";
-    public static final String PAST = " past ";
+    public static final String TO = " to";
+    public static final String PAST = " past";
     public static final int HALF_HOUR = 30;
     public static final int HOUR = 60;
 
