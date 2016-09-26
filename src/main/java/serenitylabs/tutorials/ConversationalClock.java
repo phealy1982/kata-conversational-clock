@@ -7,15 +7,9 @@ public class ConversationalClock {
     public static final String O_CLOCK = SPACE + "o'clock";
     public static final String START_OF_SENTENCE = "it's" + SPACE;
     private final SystemTime now;
-    private final int nearestHour;
-    private final Boolean onTheHour;
-    private final Boolean noonOrMidnight;
 
     public ConversationalClock(SystemTime time) {
         this.now = time;
-        this.nearestHour = nearestHour(this.now.minute());
-        this.onTheHour = onTheHour(this.now.minute());
-        this.noonOrMidnight = noonOrMidnight(this.now.hour(), this.now.minute());
     }
 
     private Boolean onTheHour(int minute) {
@@ -27,17 +21,17 @@ public class ConversationalClock {
     }
 
     public String currentTime() {
-        return createSentence(now.minute());
+        return createSentence(now.hour(), now.minute());
     }
 
-    private String createSentence(int minute) {
+    private String createSentence(int hour, int minute) {
         String sentence = START_OF_SENTENCE;
-        String hourPart = ConversationalHour.wordFor(nearestHour);
+        String hourPart = ConversationalHour.wordFor(nearestHour(minute));
         String minutePart = "";
 
-        if (onTheHour && !noonOrMidnight) {
+        if (onTheHour(now.minute()) && !noonOrMidnight(hour, minute)) {
                 hourPart += O_CLOCK;
-        } else if(!onTheHour){
+        } else if(!onTheHour(minute)){
             minutePart = ConversationalMinute.wordFor(minute) + SPACE;
         }
         return sentence + minutePart + hourPart;
