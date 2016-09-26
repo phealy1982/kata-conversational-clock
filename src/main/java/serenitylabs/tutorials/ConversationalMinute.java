@@ -10,14 +10,15 @@ public class ConversationalMinute {
 
     private static final Map<Integer, String> TRANSLATION;
     private static final String NO_PREFIX = "";
-    public static final String TO = " to";
-    public static final String PAST = " past";
+    public static final String TO = " to ";
+    public static final String PAST = " past ";
     public static final int HALF_HOUR = 30;
     public static final int HOUR = 60;
 
     static {
         TRANSLATION = new HashMap<>();
 
+        TRANSLATION.put(0, "");
         TRANSLATION.put(5, "five");
         TRANSLATION.put(10, "ten");
         TRANSLATION.put(15, "quarter");
@@ -28,15 +29,22 @@ public class ConversationalMinute {
     }
 
     public static String wordFor(int minute) {
+
         int closestSignificantMinute = closestSignificantMinute(minute);
-
-        String preFix = minute != closestSignificantMinute ?
-            minutePrefix(minute, closestSignificantMinute):
-            NO_PREFIX;
-
-        String postFix = pastTheHalfHour(minute) ? TO : PAST;
+        String preFix = prefix(minute, closestSignificantMinute);
+        String postFix = minute == 0 ? "" : postFix(minute);
 
         return preFix + TRANSLATION.get(minuteRelatedToNearestHour(closestSignificantMinute)) + postFix;
+    }
+
+    private static String postFix(int minute) {
+        return pastTheHalfHour(minute) ? TO : PAST;
+    }
+
+    private static String prefix(int minute, int closestSignificantMinute) {
+        return minute != closestSignificantMinute ?
+            minutePrefix(minute, closestSignificantMinute):
+            NO_PREFIX;
     }
 
     private static int minuteRelatedToNearestHour(int minute) {

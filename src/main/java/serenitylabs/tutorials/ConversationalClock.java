@@ -1,5 +1,6 @@
 package serenitylabs.tutorials;
 
+
 public class ConversationalClock {
 
     private static final int ONE_HOUR = 1;
@@ -12,32 +13,26 @@ public class ConversationalClock {
         this.now = time;
     }
 
-    private Boolean onTheHour(int minute) {
-        return minute == 0;
-    }
-
-    private int nearestHour(int minute) {
-        return minute > 30 ? now.hour() + ONE_HOUR : now.hour();
-    }
-
     public String currentTime() {
         return createSentence(now.hour(), now.minute());
     }
 
     private String createSentence(int hour, int minute) {
-        String sentence = START_OF_SENTENCE;
-        String hourPart = ConversationalHour.wordFor(nearestHour(minute));
-        String minutePart = "";
+        StringBuilder sentence = new StringBuilder();
+        sentence.append(START_OF_SENTENCE);
+        sentence.append(ConversationalMinute.wordFor(minute));
+        sentence.append(ConversationalHour.wordFor(nearestHourBasedOnMinute(minute)));
 
-        if (onTheHour(now.minute()) && !noonOrMidnight(hour, minute)) {
-                hourPart += O_CLOCK;
-        } else if(!onTheHour(minute)){
-            minutePart = ConversationalMinute.wordFor(minute) + SPACE;
-        }
-        return sentence + minutePart + hourPart;
+        return onTheHourAndNotNoonOrMidnight(hour, minute) ?
+            sentence.append(O_CLOCK).toString():
+            sentence.toString();
     }
 
-    private boolean noonOrMidnight(int hour, int minute) {
-        return (hour == 0 || hour == 12) && minute == 0;
+    private int nearestHourBasedOnMinute(int minute) {
+        return minute > 30 ? now.hour() + ONE_HOUR : now.hour();
+    }
+
+    private boolean onTheHourAndNotNoonOrMidnight(int hour, int minute) {
+        return (hour != 0 && hour != 12) && minute == 0;
     }
 }
