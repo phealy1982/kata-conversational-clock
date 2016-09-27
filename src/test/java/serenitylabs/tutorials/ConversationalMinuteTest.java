@@ -15,15 +15,13 @@ public class ConversationalMinuteTest {
 
     @TestWith(
         {
-            "3, almost five past",
-            "7, just gone five past",
-            "13, almost quarter past",
-            "25, twenty five past",
-            "27, just gone twenty five past",
-            "33, almost twenty five to",
-            "46, just gone quarter to",
-            "51, just gone ten to"
-        }) public void should_know_phrase_for_nearest_significant_minute(int minute, String word){
+            "5, five",
+            "10, ten",
+            "15, quarter",
+            "20, twenty",
+            "25, twenty five",
+            "30, half",
+        }) public void should_know_word_for_significant_minute(int minute, String word){
         assertThat(ConversationalMinute.wordFor(minute)).isEqualTo(word);
     }
 

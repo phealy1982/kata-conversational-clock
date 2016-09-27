@@ -3,16 +3,17 @@ package serenitylabs.tutorials;
 
 public class ConversationalClock {
 
-    private static final int ONE_HOUR = 1;
     private static final String SPACE = " ";
     public static final String O_CLOCK = SPACE + "o'clock";
     public static final String START_OF_SENTENCE = "it's" + SPACE;
     private static final String FULL_STOP = ".";
     private static final String TWO_SPACES = "  ";
-    private final SystemTime now;
+    public static final int MIDNIGHT_HOUR = 0;
+    public static final int NOON_HOUR = 12;
+    private final RelativeTime now;
 
     public ConversationalClock(SystemTime time) {
-        this.now = time;
+        this.now = new RelativeTime(time);
     }
 
     public String currentTime() {
@@ -22,9 +23,17 @@ public class ConversationalClock {
     private String createSentence(int hour, int minute) {
         StringBuilder sentence = new StringBuilder();
         sentence.append(START_OF_SENTENCE);
-        sentence.append(ConversationalMinute.wordFor(minute));
+
+        if(!now.onTheHour()) {
+            sentence.append(now.minutePrefix());
+            sentence.append(SPACE);
+            sentence.append(ConversationalMinute.wordFor(now.relativeMinute()));
+            sentence.append(SPACE);
+            sentence.append(now.hourPrefix());
+        }
+
         sentence.append(SPACE);
-        sentence.append(ConversationalHour.wordFor(nearestHourBasedOnMinute(minute)));
+        sentence.append(ConversationalHour.wordFor(now.relativeHour()));
         sentence.append(sentenceEnding(hour, minute));
 
         return sentence.toString().replace(TWO_SPACES, SPACE);
@@ -36,11 +45,7 @@ public class ConversationalClock {
                 FULL_STOP;
     }
 
-    private int nearestHourBasedOnMinute(int minute) {
-        return minute > 30 ? now.hour() + ONE_HOUR : now.hour();
-    }
-
     private boolean onTheHourAndNotNoonOrMidnight(int hour, int minute) {
-        return (hour != 0 && hour != 12) && minute == 0;
+        return (hour != MIDNIGHT_HOUR && hour != NOON_HOUR) && minute == 0;
     }
 }
