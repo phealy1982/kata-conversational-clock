@@ -21,28 +21,21 @@ public class ConversationalClock {
     }
 
     private String createSentence(int hour, int minute) {
-        StringBuilder sentence = new StringBuilder();
-        sentence.append(START_OF_SENTENCE);
+        String sentence;
 
-        if(!now.onTheHour()) {
-            sentence.append(now.minutePrefix());
-            sentence.append(SPACE);
-            sentence.append(ConversationalMinute.wordFor(now.relativeMinute()));
-            sentence.append(SPACE);
-            sentence.append(now.hourPrefix());
+        if(onTheHourAndNotNoonOrMidnight(hour, minute)) {
+            sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
+                    .withHour(ConversationalHour.wordFor(now.relativeHour()))
+                    .andWithEnding(O_CLOCK + FULL_STOP).sentence();
+        } else {
+            sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
+                    .withMinute(now.minutePrefix() + SPACE + ConversationalMinute.wordFor(now.relativeMinute()))
+                    .withHour(ConversationalHour.wordFor(now.relativeHour()))
+                    .andWithEnding(O_CLOCK + FULL_STOP).sentence();
         }
 
-        sentence.append(SPACE);
-        sentence.append(ConversationalHour.wordFor(now.relativeHour()));
-        sentence.append(sentenceEnding(hour, minute));
 
-        return sentence.toString().replace(TWO_SPACES, SPACE);
-    }
-
-    private String sentenceEnding(int hour, int minute) {
-        return onTheHourAndNotNoonOrMidnight(hour, minute) ?
-                O_CLOCK + FULL_STOP:
-                FULL_STOP;
+        return sentence;
     }
 
     private boolean onTheHourAndNotNoonOrMidnight(int hour, int minute) {
