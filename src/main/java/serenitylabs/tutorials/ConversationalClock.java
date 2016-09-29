@@ -5,7 +5,7 @@ public class ConversationalClock {
 
     private static final String SPACE = " ";
     public static final String O_CLOCK = SPACE + "o'clock";
-    public static final String START_OF_SENTENCE = "it's" + SPACE;
+    public static final String START_OF_SENTENCE = "it's";
     private static final String FULL_STOP = ".";
     private static final String TWO_SPACES = "  ";
     public static final int MIDNIGHT_HOUR = 0;
@@ -26,12 +26,12 @@ public class ConversationalClock {
         if(onTheHourAndNotNoonOrMidnight(hour, minute)) {
             sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
                     .withHour(ConversationalHour.wordFor(now.relativeHour()))
-                    .andWithEnding(O_CLOCK + FULL_STOP).sentence();
+                    .andWithOClockEnding().sentence();
         } else {
             sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
                     .withMinute(now.minutePrefix() + SPACE + ConversationalMinute.wordFor(now.relativeMinute()))
-                    .withHour(ConversationalHour.wordFor(now.relativeHour()))
-                    .andWithEnding(O_CLOCK + FULL_STOP).sentence();
+                    .withHour(now.hourPrefix() + SPACE + ConversationalHour.wordFor(now.relativeHour()))
+                    .andWithEnding(FULL_STOP).sentence();
         }
 
 

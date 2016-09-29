@@ -23,14 +23,14 @@ public class TimeSentence {
     }
 
     public String sentence() {
-        return this.beginning + this.minute + this.hour + this.ending;
+        return (this.beginning + this.minute + this.hour + this.ending).replace("  ", " ");
     }
 
     public static class TimeSentenceBuilder {
         public static final String SPACE = " ";
         private String beginning;
         private String hour;
-        private String minute;
+        private String minute ="";
 
         public TimeSentenceBuilder(String beginning) {
             this.beginning = beginning;
@@ -48,6 +48,10 @@ public class TimeSentence {
         public TimeSentenceBuilder withMinute(String minute) {
             this.minute = SPACE + minute;
             return this;
+        }
+
+        public TimeSentence andWithOClockEnding() {
+            return new TimeSentence(this.beginning, this.minute, this.hour, " o'clock.");
         }
     }
 }
