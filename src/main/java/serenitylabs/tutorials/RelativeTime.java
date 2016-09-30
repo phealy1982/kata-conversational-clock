@@ -7,6 +7,8 @@ public class RelativeTime {
     private static final int HALF_HOUR = 30;
     private static final int ONE_HOUR = 1;
     public static final String BLANK = "";
+    private static final int MIDNIGHT_HOUR = 0;
+    private static final int NOON_HOUR = 12;
     private SystemTime now;
 
     public RelativeTime(SystemTime now) {
@@ -67,5 +69,9 @@ public class RelativeTime {
 
     public boolean onTheHour() {
         return now.minute()==0;
+    }
+
+    public boolean noonOrMidnight() {
+        return (now.hour() == MIDNIGHT_HOUR || now.hour() == NOON_HOUR) && onTheHour();
     }
 }
