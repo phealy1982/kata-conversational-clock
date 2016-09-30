@@ -4,10 +4,8 @@ package serenitylabs.tutorials;
 public class ConversationalClock {
 
     private static final String SPACE = " ";
-    public static final String O_CLOCK = SPACE + "o'clock";
     public static final String START_OF_SENTENCE = "it's";
     private static final String FULL_STOP = ".";
-    private static final String TWO_SPACES = "  ";
     public static final int MIDNIGHT_HOUR = 0;
     public static final int NOON_HOUR = 12;
     private final RelativeTime now;
@@ -23,22 +21,28 @@ public class ConversationalClock {
     private String createSentence(int hour, int minute) {
         String sentence;
 
-        if(onTheHourAndNotNoonOrMidnight(hour, minute)) {
+        if(noonOrMidnight(hour, minute)) {
             sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
-                    .withHour(ConversationalHour.wordFor(now.relativeHour()))
+                    .andHour(ConversationalHour.wordFor(now.relativeHour()))
+                    .andWithEnding(FULL_STOP).sentence();
+        } else if(onTheHour(minute)){
+            sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
+                    .andHour(ConversationalHour.wordFor(now.relativeHour()))
                     .andWithOClockEnding().sentence();
         } else {
             sentence = TimeSentence.withBeginning(START_OF_SENTENCE)
-                    .withMinute(now.minutePrefix() + SPACE + ConversationalMinute.wordFor(now.relativeMinute()))
-                    .withHour(now.hourPrefix() + SPACE + ConversationalHour.wordFor(now.relativeHour()))
+                    .andMinute(now.minutePrefix() + SPACE + ConversationalMinute.wordFor(now.relativeMinute()))
+                    .andHour(now.hourPrefix() + SPACE + ConversationalHour.wordFor(now.relativeHour()))
                     .andWithEnding(FULL_STOP).sentence();
         }
-
-
         return sentence;
     }
 
-    private boolean onTheHourAndNotNoonOrMidnight(int hour, int minute) {
-        return (hour != MIDNIGHT_HOUR && hour != NOON_HOUR) && minute == 0;
+    private boolean onTheHour(int minute) {
+        return minute == 0;
+    }
+
+    private boolean noonOrMidnight(int hour, int minute) {
+        return (hour == MIDNIGHT_HOUR || hour == NOON_HOUR) && minute == 0;
     }
 }

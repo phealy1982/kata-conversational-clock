@@ -5,7 +5,6 @@ package serenitylabs.tutorials;
  */
 public class TimeSentence {
 
-
     private String beginning;
     private String ending;
     private String minute;
@@ -23,7 +22,8 @@ public class TimeSentence {
     }
 
     public String sentence() {
-        return (this.beginning + this.minute + this.hour + this.ending).replace("  ", " ");
+        String sentence = this.beginning + this.minute + this.hour + this.ending;
+        return sentence.replace("   ", " ").replace("  ", " ");
     }
 
     public static class TimeSentenceBuilder {
@@ -40,12 +40,12 @@ public class TimeSentence {
             return new TimeSentence(this.beginning, this.minute, this.hour, ending);
         }
 
-        public TimeSentenceBuilder withHour(String hour) {
+        public TimeSentenceBuilder andHour(String hour) {
             this.hour = SPACE + hour;
             return this;
         }
 
-        public TimeSentenceBuilder withMinute(String minute) {
+        public TimeSentenceBuilder andMinute(String minute) {
             this.minute = SPACE + minute;
             return this;
         }

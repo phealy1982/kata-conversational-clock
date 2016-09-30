@@ -29,10 +29,6 @@ public class RelativeTime {
         return this.now.minute() <= HALF_HOUR && this.now.minute() != 0;
     }
 
-    public boolean toTheHour() {
-        return this.minute() > HALF_HOUR && this.now.minute() != 0;
-    }
-
     public int relativeMinute() {
         int relativeMinute = closestSignificantMinute(minute());
         return relativeMinute > HALF_HOUR ? 60 - relativeMinute : relativeMinute;

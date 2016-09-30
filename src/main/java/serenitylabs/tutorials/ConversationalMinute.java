@@ -11,6 +11,7 @@ public class ConversationalMinute {
     private static final Map<Integer, String> TRANSLATION = new HashMap<>();
 
     static {
+        TRANSLATION.put(0, "");
         TRANSLATION.put(5, "five");
         TRANSLATION.put(10, "ten");
         TRANSLATION.put(15, "quarter");
