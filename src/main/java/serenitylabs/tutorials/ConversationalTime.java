@@ -31,6 +31,6 @@ public class ConversationalTime {
     }
 
     public Integer minute() {
-        return 0;
+        return systemTime.minute();
     }
 }
