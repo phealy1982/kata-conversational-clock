@@ -31,6 +31,13 @@ public class ConversationalClockTest {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
     }
 
+    @TestWith({
+            "01:50, it's ten to two",
+            "02:40, it's twenty to three",
+    })
+    public void should_tell_the_time_to_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
     /**
      * Creates an instance of a ConversationalClock, set to a requiredTime
      *
@@ -47,6 +54,6 @@ public class ConversationalClockTest {
         when(mockSystemTime.hour()).thenReturn(time.hour());
         when(mockSystemTime.minute()).thenReturn(time.minute());
 
-        return new ConversationalClock(mockSystemTime, new TimeSentence());
+        return new ConversationalClock(mockSystemTime);
     }
 }

@@ -2,15 +2,14 @@ package serenitylabs.tutorials;
 
 public class ConversationalClock {
 
-    private final TimeSentence timeSentence;
-    private final ConversationalTime conversationalTime;
+    private final SystemTime time;
 
-    public ConversationalClock(SystemTime time, TimeSentence timeSentence) {
-        this.conversationalTime = new ConversationalTime(time);
-        this.timeSentence = timeSentence;
+
+    public ConversationalClock(SystemTime time) {
+        this.time = time;
     }
 
     public String currentTime() {
-        return timeSentence.sentenceWith(conversationalTime.hour(), conversationalTime.minute());
+        return new TimeSentence().with(time.hour(), time.minute());
     }
 }
