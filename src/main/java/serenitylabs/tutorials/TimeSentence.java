@@ -9,8 +9,6 @@ public class TimeSentence {
 
     private static final String BEGINNING = "it's ";
     private static final String FULL_STOP = ".";
-    private static final int MIDNIGHT_HOUR = 0;
-    private static final int NOON_HOUR = 12;
     private String ending;
     private String minutePrefix;
     private String minute;
@@ -37,7 +35,6 @@ public class TimeSentence {
                 .add(this.hour)
                 .toString()
                 .replaceAll("\\s+", " ");
-
     }
 
     public static String representing(RelativeTime now) {

@@ -15,7 +15,6 @@ public class TimeSentenceTest {
         assertThat(sentence.sentence()).startsWith("it's nine").endsWith(".");
     }
 
-
     @Test
     public void should_allow_for_a_minute_part() throws Exception {
         TimeSentence sentence = TimeSentence.withHour("noon").andMinute("twenty five past").andWithEnding(".");
