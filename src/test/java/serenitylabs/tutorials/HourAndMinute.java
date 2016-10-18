@@ -16,7 +16,7 @@ class HourAndMinute {
     public HourAndMinute(String formattedTime) {
         String[] parts = formattedTime.split(":");
 
-        this.hour   = Integer.parseInt(parts[0]);
+        this.hour = Integer.parseInt(parts[0]);
         this.minute = Integer.parseInt(parts[1]);
     }
 

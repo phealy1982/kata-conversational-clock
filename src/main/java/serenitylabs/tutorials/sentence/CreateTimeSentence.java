@@ -28,7 +28,7 @@ public class CreateTimeSentence {
     }
 
     private static String ironMaidenEasterEgg() {
-            return IRON_MAIDEN_TIME;
+        return IRON_MAIDEN_TIME;
     }
 
     private static boolean isTwoMinutesToMidnight(SignificantTime time) {
