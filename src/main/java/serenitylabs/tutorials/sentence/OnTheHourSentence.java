@@ -1,11 +1,11 @@
 package serenitylabs.tutorials.sentence;
 
-import serenitylabs.tutorials.time.ConversationalHour;
 import serenitylabs.tutorials.SignificantTime;
+import serenitylabs.tutorials.time.ConversationalHour;
 
 import java.util.StringJoiner;
 
-import static serenitylabs.tutorials.time.ConversationalMinute.*;
+import static serenitylabs.tutorials.time.ConversationalMinute.prefix;
 
 /**
  * Created by 66515 on 17/10/2016.
@@ -26,6 +26,6 @@ public class OnTheHourSentence implements Sentence {
     }
 
     private Boolean noonOrMidnight(SignificantTime time) {
-        return (time.hour() == 0 || time.hour() == 12  || time.hour() == 24);
+        return (time.hour() == 0 || time.hour() == 12 || time.hour() == 24);
     }
 }

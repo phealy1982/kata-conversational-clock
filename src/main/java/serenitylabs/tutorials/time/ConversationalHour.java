@@ -1,12 +1,16 @@
 package serenitylabs.tutorials.time;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 66515 on 17/10/2016.
  */
 public class ConversationalHour {
     private static final Map<List<Integer>, String> HOURS = new HashMap<>();
+
     static {
         HOURS.put(values(1, 13), "one");
         HOURS.put(values(2, 14), "two");
@@ -22,18 +26,16 @@ public class ConversationalHour {
         HOURS.put(values(0, 24), "midnight");
     }
 
-    private static List<Integer> values(Integer ... hours) {
+    private static List<Integer> values(Integer... hours) {
         return Arrays.asList(hours);
     }
 
     public static String wordFor(Integer hour) {
-        String[] hourWord = {null};
-        HOURS.forEach((k,v)-> {
-            if(k.contains(hour)){
-                hourWord[0] =v;
-            }
-        }
-        );
-        return hourWord[0];
+        return HOURS.entrySet()
+                .stream()
+                .filter((e -> e.getKey().contains(hour)))
+                .findAny()
+                .get()
+                .getValue();
     }
 }

@@ -1,11 +1,12 @@
 package serenitylabs.tutorials.sentence;
 
-import serenitylabs.tutorials.time.ConversationalHour;
 import serenitylabs.tutorials.SignificantTime;
+import serenitylabs.tutorials.time.ConversationalHour;
 
 import java.util.StringJoiner;
 
-import static serenitylabs.tutorials.time.ConversationalMinute.*;
+import static serenitylabs.tutorials.time.ConversationalMinute.prefix;
+import static serenitylabs.tutorials.time.ConversationalMinute.wordFor;
 
 /**
  * Created by 66515 on 17/10/2016.

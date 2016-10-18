@@ -1,6 +1,6 @@
 package serenitylabs.tutorials.sentence;
 
-import serenitylabs.tutorials.*;
+import serenitylabs.tutorials.SignificantTime;
 import serenitylabs.tutorials.time.RelationToHour;
 
 import java.util.HashMap;
@@ -11,11 +11,12 @@ import java.util.Map;
  */
 public class CreateTimeSentence {
 
-    private static final Map<RelationToHour, Sentence> sentences = new HashMap<>();
+    private static final Map<RelationToHour, Sentence> SENTENCES = new HashMap<>();
+
     static {
-        sentences.put(RelationToHour.ON_THE_HOUR, new OnTheHourSentence());
-        sentences.put(RelationToHour.PAST_THE_HOUR, new PastTheHourSentence());
-        sentences.put(RelationToHour.TO_THE_HOUR, new ToTheHourSentence());
+        SENTENCES.put(RelationToHour.ON_THE_HOUR, new OnTheHourSentence());
+        SENTENCES.put(RelationToHour.PAST_THE_HOUR, new PastTheHourSentence());
+        SENTENCES.put(RelationToHour.TO_THE_HOUR, new ToTheHourSentence());
     }
 
     public static String with(SignificantTime time) {
@@ -23,6 +24,6 @@ public class CreateTimeSentence {
     }
 
     private static Sentence getSentenceTypeFor(SignificantTime time) {
-        return sentences.get(RelationToHour.forMinute(time.minute()));
+        return SENTENCES.get(RelationToHour.forMinute(time.minute()));
     }
 }

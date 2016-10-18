@@ -1,7 +1,7 @@
 package serenitylabs.tutorials.sentence;
 
-import serenitylabs.tutorials.time.ConversationalHour;
 import serenitylabs.tutorials.SignificantTime;
+import serenitylabs.tutorials.time.ConversationalHour;
 
 import java.util.StringJoiner;
 

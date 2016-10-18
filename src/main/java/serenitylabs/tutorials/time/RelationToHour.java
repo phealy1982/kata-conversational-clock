@@ -9,17 +9,17 @@ import java.util.TreeMap;
 public enum RelationToHour {
     ON_THE_HOUR, PAST_THE_HOUR, TO_THE_HOUR;
 
-    private static final NavigableMap<Integer,RelationToHour> minuteToHourRelationship = new TreeMap();
+    private static final NavigableMap<Integer, RelationToHour> MINUTE_TO_HOUR_RELATIONSHIP = new TreeMap();
 
     static {
-        minuteToHourRelationship.put(0, ON_THE_HOUR);
-        minuteToHourRelationship.put(3, PAST_THE_HOUR);
-        minuteToHourRelationship.put(31, TO_THE_HOUR);
-        minuteToHourRelationship.put(58, ON_THE_HOUR);
+        MINUTE_TO_HOUR_RELATIONSHIP.put(0, ON_THE_HOUR);
+        MINUTE_TO_HOUR_RELATIONSHIP.put(3, PAST_THE_HOUR);
+        MINUTE_TO_HOUR_RELATIONSHIP.put(31, TO_THE_HOUR);
+        MINUTE_TO_HOUR_RELATIONSHIP.put(58, ON_THE_HOUR);
     }
 
     public static RelationToHour forMinute(Integer minute) {
-        Integer floorKey = minuteToHourRelationship.floorKey(minute);
-        return minuteToHourRelationship.get(floorKey);
+        Integer floorKey = MINUTE_TO_HOUR_RELATIONSHIP.floorKey(minute);
+        return MINUTE_TO_HOUR_RELATIONSHIP.get(floorKey);
     }
 }
