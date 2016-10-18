@@ -12,6 +12,7 @@ import java.util.Map;
 public class CreateTimeSentence {
 
     private static final Map<RelationToHour, Sentence> SENTENCES = new HashMap<>();
+    public static final String IRON_MAIDEN_TIME = "it's two!! minutes to midnight!!!!";
 
     static {
         SENTENCES.put(RelationToHour.ON_THE_HOUR, new OnTheHourSentence());
@@ -19,8 +20,19 @@ public class CreateTimeSentence {
         SENTENCES.put(RelationToHour.TO_THE_HOUR, new ToTheHourSentence());
     }
 
+
     public static String with(SignificantTime time) {
-        return getSentenceTypeFor(time).thenCreateSentenceWith(time);
+        return isTwoMinutesToMidnight(time) ?
+                ironMaidenEasterEgg() :
+                getSentenceTypeFor(time).thenCreateSentenceWith(time);
+    }
+
+    private static String ironMaidenEasterEgg() {
+            return IRON_MAIDEN_TIME;
+    }
+
+    private static boolean isTwoMinutesToMidnight(SignificantTime time) {
+        return time.hour() == 24 && time.minute() == 58;
     }
 
     private static Sentence getSentenceTypeFor(SignificantTime time) {

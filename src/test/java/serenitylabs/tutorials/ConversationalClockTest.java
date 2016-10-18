@@ -52,6 +52,7 @@ public class ConversationalClockTest {
 
     @TestWith({
             "23:40, it's twenty to midnight.",
+            "23:58, it's two!! minutes to midnight!!!!",
             "00:00, it's midnight.",
             "00:20, it's twenty past midnight.",
     })
@@ -70,7 +71,7 @@ public class ConversationalClockTest {
     @TestWith({
             "00:59, it's almost one o'clock.",
             "14:58, it's almost three o'clock.",
-            "23:58, it's almost midnight.",
+            "23:59, it's almost midnight.",
     })
     public void should_know_when_almost_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
