@@ -52,7 +52,6 @@ public class ConversationalClockTest {
 
     @TestWith({
             "23:40, it's twenty to midnight.",
-            "23:58, it's two!! minutes to midnight!!!!",
             "00:00, it's midnight.",
             "00:20, it's twenty past midnight.",
     })
@@ -74,6 +73,13 @@ public class ConversationalClockTest {
             "23:59, it's almost midnight.",
     })
     public void should_know_when_almost_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+    @TestWith({
+            "23:58, it's two!! minutes to midnight!!!!",
+    })
+    public void should_know_about_classic_iron_maiden_songs(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
     }
 
