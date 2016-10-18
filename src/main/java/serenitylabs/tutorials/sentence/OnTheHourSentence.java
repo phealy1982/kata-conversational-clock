@@ -17,24 +17,15 @@ public class OnTheHourSentence implements Sentence {
 
     @Override
     public String thenCreateSentenceWith(SignificantTime time) {
-        return noonOrMidnight(time) ?
-                createNoonOrMidnightSentence(time) :
-                new StringJoiner(" ", BEGINNING, O_CLOCK)
-                        .add(prefix(time.minute()))
-                        .add(ConversationalHour.wordFor(time.hour()))
-                        .toString()
-                        .replaceAll("\\s+", " ");
-    }
-
-    private Boolean noonOrMidnight(SignificantTime time) {
-        return (time.hour() == 0 || time.hour() == 12  || time.hour() == 24);
-    }
-
-    private String createNoonOrMidnightSentence(SignificantTime time) {
-        return new StringJoiner(" ", BEGINNING, FULL_STOP)
+        String ending = noonOrMidnight(time) ? FULL_STOP : O_CLOCK;
+        return new StringJoiner(" ", BEGINNING, ending)
                 .add(prefix(time.minute()))
                 .add(ConversationalHour.wordFor(time.hour()))
                 .toString()
                 .replaceAll("\\s+", " ");
+    }
+
+    private Boolean noonOrMidnight(SignificantTime time) {
+        return (time.hour() == 0 || time.hour() == 12  || time.hour() == 24);
     }
 }
