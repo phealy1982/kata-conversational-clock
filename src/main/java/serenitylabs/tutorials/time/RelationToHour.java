@@ -1,9 +1,5 @@
-package serenitylabs.tutorials;
+package serenitylabs.tutorials.time;
 
-import org.apache.commons.lang3.Range;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -17,11 +13,12 @@ public enum RelationToHour {
 
     static {
         minuteToHourRelationship.put(0, ON_THE_HOUR);
-        minuteToHourRelationship.put(1, PAST_THE_HOUR);
+        minuteToHourRelationship.put(3, PAST_THE_HOUR);
         minuteToHourRelationship.put(31, TO_THE_HOUR);
+        minuteToHourRelationship.put(58, ON_THE_HOUR);
     }
 
-    static RelationToHour forMinute(Integer minute) {
+    public static RelationToHour forMinute(Integer minute) {
         Integer floorKey = minuteToHourRelationship.floorKey(minute);
         return minuteToHourRelationship.get(floorKey);
     }

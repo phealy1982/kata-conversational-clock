@@ -3,7 +3,6 @@ package serenitylabs.tutorials;
 import com.googlecode.zohhak.api.Coercion;
 import com.googlecode.zohhak.api.TestWith;
 import com.googlecode.zohhak.api.runners.ZohhakRunner;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,9 +24,9 @@ public class ConversationalClockTest {
 
     @TestWith({
             "01:10, it's ten past one.",
-            "02:20, it's twenty past two.",
+            "02:21, it's just after twenty past two.",
             "02:15, it's quarter past two.",
-            "20:30, it's half past eight.",
+            "20:29, it's almost half past eight.",
     })
     public void should_tell_the_time_past_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
@@ -35,7 +34,7 @@ public class ConversationalClockTest {
 
     @TestWith({
             "01:50, it's ten to two.",
-            "02:40, it's twenty to three.",
+            "02:41, it's just after twenty to three.",
             "19:45, it's quarter to eight.",
     })
     public void should_tell_the_time_to_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
@@ -57,6 +56,23 @@ public class ConversationalClockTest {
             "00:20, it's twenty past midnight.",
     })
     public void should_know_about_midnight(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+    @TestWith({
+            "01:01, it's just after one o'clock.",
+            "12:02, it's just after noon.",
+    })
+    public void should_know_when_just_gone_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
+        assertThat(clock.currentTime()).isEqualTo(expectedTime);
+    }
+
+    @TestWith({
+            "00:59, it's almost one o'clock.",
+            "14:58, it's almost three o'clock.",
+            "23:58, it's almost midnight.",
+    })
+    public void should_know_when_almost_the_hour(ConversationalClock clock, String expectedTime) throws Exception {
         assertThat(clock.currentTime()).isEqualTo(expectedTime);
     }
 
